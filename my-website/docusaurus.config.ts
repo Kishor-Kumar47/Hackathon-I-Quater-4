@@ -2,34 +2,27 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'Your guide to the future of intelligent robotics',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
-  url: 'https://physical-ai-book.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // ✅ UPDATED: Your GitHub Pages URL
+  url: 'https://Kishor-Kumar47.github.io',
+  baseUrl: '/Hackathon-I-Quater-4/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'physical-ai-book-org', // Usually your GitHub org/user name.
-  projectName: 'physical-ai-book', // Usually your repo name.
+  // ✅ UPDATED: Your GitHub info
+  organizationName: 'Kishor-Kumar47',
+  projectName: 'Hackathon-I-Quater-4',
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -41,10 +34,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/physical-ai-book-org/physical-ai-book/tree/main/',
+            'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4/tree/main/my-website/',
         },
         blog: {
           showReadingTime: true,
@@ -52,11 +43,8 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/physical-ai-book-org/physical-ai-book/tree/main/',
-          // Useful options to enforce blogging best practices
+            'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4/tree/main/my-website/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -69,7 +57,6 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
@@ -77,7 +64,7 @@ const config: Config = {
     navbar: {
       title: 'Physical AI & Humanoid Robotics',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Physical AI Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -90,7 +77,7 @@ const config: Config = {
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/signin', label: 'Sign In', position: 'right'},
         {
-          href: 'https://github.com/Kishor-Kumar47',
+          href: 'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4',
           label: 'GitHub',
           position: 'right',
         },
@@ -134,12 +121,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/Kishor-Kumar47',
+              href: 'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My book, Kishor Kumar`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI Book by Kishor Kumar - Panaversity Hackathon`,
     },
     prism: {
       theme: prismThemes.github,
