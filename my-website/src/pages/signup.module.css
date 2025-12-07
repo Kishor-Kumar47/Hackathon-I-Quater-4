@@ -1,0 +1,123 @@
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top to allow for scrolling on smaller screens */
+  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height)); /* Adjusted */
+  padding: 2rem;
+  background-color: var(--ifm-background-color);
+}
+
+.signupBox {
+  background-color: var(--ifm-card-background-color);
+  padding: 2.5rem;
+  border-radius: var(--ifm-border-radius);
+  box-shadow: var(--ifm-shadow-md);
+  max-width: 550px; /* Increased max-width for multi-step form */
+  width: 100%;
+  text-align: center;
+}
+
+.signupBox h1 {
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--ifm-font-color-base);
+}
+
+.formGroup input[type="email"],
+.formGroup input[type="password"],
+.formGroup input[type="number"],
+.formGroup input[type="text"],
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-gray-300);
+  border-radius: var(--ifm-border-radius);
+  box-sizing: border-box; /* Ensures padding doesn't expand the element */
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.formGroup input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.formGroup select[multiple] {
+  min-height: 100px; /* Ensure multiple select is visible */
+}
+
+.formGroup button {
+  margin-top: 1rem;
+}
+
+.formGroup button:not(:last-child) {
+  margin-right: 1rem; /* Space between buttons */
+}
+
+button {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--ifm-border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+button[type="submit"] {
+  background-color: var(--ifm-color-success);
+}
+
+button[type="submit"]:hover {
+  background-color: var(--ifm-color-success-dark);
+}
+
+button[type="button"]:first-of-type:not([type="submit"]) {
+  background-color: var(--ifm-color-secondary);
+}
+
+button[type="button"]:first-of-type:not([type="submit"]):hover {
+  background-color: var(--ifm-color-secondary-dark);
+}
+
+.errorMessage {
+  color: var(--ifm-color-danger);
+  margin-bottom: 1rem;
+}
+
+.successMessage {
+  color: var(--ifm-color-success);
+  margin-bottom: 1rem;
+}
+
+.loginLink {
+  margin-top: 1.5rem;
+  color: var(--ifm-font-color-base);
+}
+
+.loginLink a {
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+}
+
+.infoText {
+  font-size: 0.9em;
+  color: var(--ifm-color-secondary);
+  margin-top: 0.5rem;
+}

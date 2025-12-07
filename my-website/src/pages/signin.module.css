@@ -1,0 +1,82 @@
+.signinContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - var(--ifm-navbar-height) - var(--ifm-footer-height));
+  padding: 2rem;
+  background-color: var(--ifm-background-color);
+}
+
+.signinBox {
+  background-color: var(--ifm-card-background-color);
+  padding: 2.5rem;
+  border-radius: var(--ifm-border-radius);
+  box-shadow: var(--ifm-shadow-md);
+  max-width: 400px; /* Smaller max-width for sign-in form */
+  width: 100%;
+  text-align: center;
+}
+
+.signinBox h1 {
+  margin-bottom: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--ifm-font-color-base);
+}
+
+.formGroup input[type="email"],
+.formGroup input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-color-gray-300);
+  border-radius: var(--ifm-border-radius);
+  box-sizing: border-box;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+button[type="submit"] {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--ifm-border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%; /* Full width button */
+}
+
+button[type="submit"]:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.errorMessage {
+  color: var(--ifm-color-danger);
+  margin-bottom: 1rem;
+}
+
+.successMessage {
+  color: var(--ifm-color-success);
+  margin-bottom: 1rem;
+}
+
+.signupLink {
+  margin-top: 1.5rem;
+  color: var(--ifm-font-color-base);
+}
+
+.signupLink a {
+  color: var(--ifm-color-primary);
+  font-weight: bold;
+}
