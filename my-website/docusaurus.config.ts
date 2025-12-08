@@ -12,13 +12,13 @@ const config: Config = {
   },
 
   // ✅ UPDATED: Your GitHub Pages URL
-  url: 'https://Kishor-Kumar47.github.io',
-  baseUrl: '/Hackathon-I-Quater-4/',
+  url: 'https://your-vercel-domain.vercel.app',
+  baseUrl: '/',
 
   // ✅ UPDATED: Your GitHub info
-  organizationName: 'Kishor-Kumar47',
-  projectName: 'Hackathon-I-Quater-4',
-  deploymentBranch: 'gh-pages',
+  // organizationName: 'Kishor-Kumar47',
+  // projectName: 'Hackathon-I-Quater-4',
+  // deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
