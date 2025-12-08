@@ -4,27 +4,73 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 4rem 2rem; /* Adjusted padding */
   position: relative;
   overflow: hidden;
+  background: #1a202c; /* Fallback background */
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.hero__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leftBox,
+.rightBox {
+  flex: 1;
+  padding: 2rem;
+  border-radius: 25px; /* Half radius */
+  background: linear-gradient(145deg, #2d3748, #1a202c);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  height: 100%; /* Ensure boxes have the same height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leftBox {
+  text-align: left;
+}
+
+.rightBox {
+  align-items: center;
+}
+
+.homepageImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align button to the left */
+  margin-top: 1.5rem;
 }
 
-.homepageImage {
-  margin-top: 2rem;
-  max-width: 600px; /* Adjust as needed */
-  width: 100%;
-  height: auto;
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem 1rem;
+  }
+
+  .hero__container {
+    flex-direction: column;
+  }
+
+  .leftBox,
+  .rightBox {
+    width: 100%;
+    text-align: center;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
 }
