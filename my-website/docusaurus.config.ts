@@ -12,8 +12,8 @@ const config: Config = {
   },
 
   // ✅ UPDATED: Your GitHub Pages URL
-  url: 'https://your-vercel-domain.vercel.app',
-  baseUrl: '/',
+  url: "https://hackathon-i-quater-4.vercel.app",
+  baseUrl: "/",
 
   // ✅ UPDATED: Your GitHub info
   // organizationName: 'Kishor-Kumar47',
