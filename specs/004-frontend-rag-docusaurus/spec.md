@@ -2,7 +2,7 @@
 
 **Feature Branch**: `004-frontend-rag-docusaurus`  
 **Created**: 2025-12-18  
-**Status**: Draft  
+**Status**: Completed  
 **Input**: User description: "Frontend–Backend Integration for RAG Chatbot Target audience: - Full-stack developers integrating AI backends into static documentation sites - Engineers embedding RAG systems into Docusaurus-based products Focus: - Connecting the FastAPI-based RAG backend with the Docusaurus frontend - Establishing local and production-safe communication between frontend and backend - Enabling user queries from the UI to be processed by the RAG agent - Supporting both full-book queries and user-selected text–only queries from the frontend, my frontend docusaurus project is in my-website folder"
 
 ## User Scenarios & Testing *(mandatory)*
