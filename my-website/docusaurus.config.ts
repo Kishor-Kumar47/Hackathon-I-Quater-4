@@ -75,6 +75,7 @@ const config: Config = {
           label: 'Book',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/chat', label: 'Chatbot', position: 'left'},
         {to: '/signin', label: 'Sign In', position: 'right'},
         {
           href: 'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4',
