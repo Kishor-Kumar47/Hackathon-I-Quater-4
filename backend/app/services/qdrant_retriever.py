@@ -7,7 +7,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http.models import Filter, FieldCondition, MatchValue
 
 from langchain_core.tools import BaseTool
-from langchain_openai import OpenAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 class QdrantRetrievalService:
     def __init__(self):
@@ -16,7 +16,7 @@ class QdrantRetrievalService:
             api_key=os.getenv("QDRANT_API_KEY")
         )
         self.collection_name = os.getenv("QDRANT_COLLECTION")
-        self.embeddings_model = OpenAIEmbeddings()
+        self.embeddings_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
     def retrieve(self, query: str, k: int = 5) -> List[Dict[str, Any]]:
         """
