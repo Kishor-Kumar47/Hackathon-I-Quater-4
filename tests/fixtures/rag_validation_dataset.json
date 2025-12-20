@@ -1,0 +1,12 @@
+[
+  {
+    "query": "How is the humanoid robot's visual perception system trained?",
+    "expected_document_id": "doc_humanoid_vision_training_04",
+    "justification": "This chunk specifically details the dataset and augmentation techniques for the vision model."
+  },
+  {
+    "query": "What material is the robot's chassis made of?",
+    "expected_document_id": "doc_chassis_materials_01",
+    "justification": "This is the primary document describing the chassis construction and materials."
+  }
+]

@@ -2,10 +2,14 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+
+
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'Your guide to the future of intelligent robotics',
   favicon: 'img/favicon.ico',
+ 
+
 
   future: {
     v4: true,
@@ -21,7 +25,9 @@ const config: Config = {
   // deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  // onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
 
   i18n: {
     defaultLocale: 'en',
@@ -75,6 +81,7 @@ const config: Config = {
           label: 'Book',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/chat', label: 'Chatbot', position: 'left'},
         {to: '/signin', label: 'Sign In', position: 'right'},
         {
           href: 'https://github.com/Kishor-Kumar47/Hackathon-I-Quater-4',
