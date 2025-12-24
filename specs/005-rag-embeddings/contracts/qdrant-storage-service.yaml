@@ -1,0 +1,432 @@
+# OpenAPI 3.0 specification
+openapi: 3.0.0
+info:
+  title: Qdrant Storage Service
+  version: 1.0.0
+  description: Service for storing and retrieving embeddings in Qdrant vector database
+
+paths:
+  /collections/{collection_name}/points:
+    post:
+      summary: Store embeddings in Qdrant collection
+      description: Upload embedding vectors with metadata to a Qdrant collection
+      parameters:
+        - name: collection_name
+          in: path
+          required: true
+          description: Name of the Qdrant collection
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - points
+              properties:
+                points:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - vector
+                      - payload
+                    properties:
+                      id:
+                        type: string
+                        description: Unique identifier for the point
+                        example: "chunk-123"
+                      vector:
+                        type: array
+                        items:
+                          type: number
+                          format: float
+                        description: The embedding vector
+                        example: [0.1, 0.2, 0.3, 0.4]
+                      payload:
+                        type: object
+                        description: Metadata associated with the vector
+                        properties:
+                          content:
+                            type: string
+                            description: Original content text
+                          source_url:
+                            type: string
+                            description: Source document URL
+                          title:
+                            type: string
+                            description: Document title
+                          headings:
+                            type: array
+                            items:
+                              type: string
+                            description: Document headings hierarchy
+                          created_at:
+                            type: string
+                            format: date-time
+                            description: Creation timestamp
+                wait:
+                  type: boolean
+                  default: true
+                  description: Wait for operation commit
+      responses:
+        '200':
+          description: Vectors stored successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      operation_id:
+                        type: integer
+                        description: ID of the operation
+                      status:
+                        type: string
+                        enum: [acknowledged, completed]
+                        description: Status of the operation
+                  status:
+                    type: string
+                    example: "ok"
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '404':
+          description: Collection not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+
+  /collections/{collection_name}/points/search:
+    post:
+      summary: Search for similar embeddings
+      description: Find vectors similar to the query vector using cosine similarity
+      parameters:
+        - name: collection_name
+          in: path
+          required: true
+          description: Name of the Qdrant collection
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - vector
+                - limit
+              properties:
+                vector:
+                  type: array
+                  items:
+                    type: number
+                    format: float
+                  description: Query vector for similarity search
+                  example: [0.1, 0.2, 0.3, 0.4]
+                limit:
+                  type: integer
+                  description: Maximum number of results to return
+                  minimum: 1
+                  maximum: 1000
+                  example: 10
+                with_payload:
+                  type: boolean
+                  default: true
+                  description: Whether to return payload with results
+                with_vector:
+                  type: boolean
+                  default: false
+                  description: Whether to return vector with results
+                score_threshold:
+                  type: number
+                  format: float
+                  minimum: 0
+                  maximum: 1
+                  description: Minimum similarity score threshold
+      responses:
+        '200':
+          description: Similar vectors found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Point identifier
+                        version:
+                          type: integer
+                          description: Point version
+                        score:
+                          type: number
+                          format: float
+                          description: Similarity score
+                        payload:
+                          type: object
+                          description: Metadata associated with the vector
+                        vector:
+                          type: array
+                          items:
+                            type: number
+                            format: float
+                          description: Vector values (if with_vector=true)
+                  status:
+                    type: string
+                    example: "ok"
+                  time:
+                    type: number
+                    format: float
+                    example: 0.001
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '404':
+          description: Collection not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+
+  /collections:
+    get:
+      summary: List available collections
+      description: Get a list of all Qdrant collections
+      responses:
+        '200':
+          description: List of collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: Collection name
+                            status:
+                              type: string
+                              enum: [green, yellow, red]
+                              description: Health status
+                            optimizer_status:
+                              type: string
+                              description: Optimizer status
+                            vectors_count:
+                              type: integer
+                              description: Number of vectors in collection
+                            segments_count:
+                              type: integer
+                              description: Number of segments
+                            config:
+                              type: object
+                              description: Collection configuration
+                            payload_schema:
+                              type: object
+                              description: Payload schema
+                  status:
+                    type: string
+                    example: "ok"
+                  time:
+                    type: number
+                    format: float
+                    example: 0.001
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+
+  /collections/{collection_name}:
+    put:
+      summary: Create a new collection
+      description: Create a new Qdrant collection for storing embeddings
+      parameters:
+        - name: collection_name
+          in: path
+          required: true
+          description: Name of the Qdrant collection
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - vectors
+              properties:
+                vectors:
+                  type: object
+                  required:
+                    - size
+                    - distance
+                  properties:
+                    size:
+                      type: integer
+                      description: Dimension of the vectors
+                      example: 768
+                    distance:
+                      type: string
+                      enum: [Cosine, Euclid, Dot]
+                      description: Distance metric for similarity search
+                      default: Cosine
+                hnsw_config:
+                  type: object
+                  description: HNSW index configuration
+                optimizers_config:
+                  type: object
+                  description: Optimizer configuration
+                wal_config:
+                  type: object
+                  description: Write-ahead log configuration
+      responses:
+        '200':
+          description: Collection created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    example: "ok"
+        '400':
+          description: Bad request - invalid collection configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '409':
+          description: Collection already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  time:
+                    type: string
+                    format: date-time
+                    example: "2023-01-01T00:00:00.000000Z"

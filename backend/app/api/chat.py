@@ -1,8 +1,8 @@
 # backend/app/api/chat.py
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from backend.app.models.chat import AgentQueryRequest, AgentResponse
-from backend.app.services.agent import RAGAgent
+from ..models.chat import AgentQueryRequest, AgentResponse
+from ..services.agent import RAGAgent
 
 router = APIRouter()
 

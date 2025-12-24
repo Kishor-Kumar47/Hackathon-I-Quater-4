@@ -1,0 +1,502 @@
+{
+  "report_id": "test_report_20251223_104952",
+  "summary": {
+    "total_tests": 7,
+    "passed_tests": 0,
+    "failed_tests": 7,
+    "pass_rate": 0.0,
+    "average_precision": 0.0,
+    "average_recall": 0.0,
+    "average_f1_score": 0.0,
+    "timestamp": "2025-12-23T10:49:52.124115"
+  },
+  "detailed_metrics": {
+    "timestamp": "2025-12-23T10:49:52.124230",
+    "latency_metrics": {
+      "count": 19,
+      "avg_latency_ms": 0.011983670686420641,
+      "median_latency_ms": 0.008821487426757812,
+      "min_latency_ms": 0.005245208740234375,
+      "max_latency_ms": 0.04076957702636719,
+      "p95_latency_ms": 0.030255317687988257,
+      "p99_latency_ms": 0.03866672515869141
+    },
+    "accuracy_metrics": {
+      "count": 18,
+      "avg_precision": 0.0,
+      "avg_recall": 0.0,
+      "avg_f1_score": 0,
+      "min_precision": 0.0,
+      "max_precision": 0.0,
+      "min_recall": 0.0,
+      "max_recall": 0.0,
+      "min_f1_score": 0,
+      "max_f1_score": 0
+    },
+    "total_queries_measured": 19,
+    "total_accuracy_measurements": 18
+  },
+  "test_results": [
+    {
+      "test_id": "ai_fundamentals_001",
+      "query_text": "What is artificial intelligence and how does it work?",
+      "category": "AI Fundamentals",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'What is artificial intelligence and how does it work?'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'What is artificial intelligence and how does it work?'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'What is artificial intelligence and how does it work?'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "ai_def_001",
+          "text": "Artificial Intelligence (AI) is intelligence demonstrated by machines, in contrast to the natural intelligence displayed by humans and animals.",
+          "score": 1.0,
+          "source": "ai_textbook_ch1"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.008821487426757812,
+        "timestamp": "2025-12-23T10:49:52.123349"
+      },
+      "timestamp": "2025-12-23T10:49:52.123443"
+    },
+    {
+      "test_id": "ml_concepts_001",
+      "query_text": "Explain machine learning concepts and algorithms",
+      "category": "Machine Learning",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'Explain machine learning concepts and algorithms'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'Explain machine learning concepts and algorithms'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'Explain machine learning concepts and algorithms'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "ml_concept_001",
+          "text": "Machine learning is a method of data analysis that automates analytical model building.",
+          "score": 1.0,
+          "source": "ml_textbook_ch2"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.008106231689453125,
+        "timestamp": "2025-12-23T10:49:52.123464"
+      },
+      "timestamp": "2025-12-23T10:49:52.123551"
+    },
+    {
+      "test_id": "vector_search_001",
+      "query_text": "How does vector search work in retrieval systems?",
+      "category": "Retrieval Systems",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'How does vector search work in retrieval systems?'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'How does vector search work in retrieval systems?'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'How does vector search work in retrieval systems?'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "vector_search_001",
+          "text": "Vector search is a technique that finds items similar to a query item based on the similarity of their vector representations.",
+          "score": 1.0,
+          "source": "search_textbook_ch5"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.007867813110351562,
+        "timestamp": "2025-12-23T10:49:52.123571"
+      },
+      "timestamp": "2025-12-23T10:49:52.123654"
+    },
+    {
+      "test_id": "rag_systems_001",
+      "query_text": "What are the key components of a RAG system?",
+      "category": "RAG Systems",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'What are the key components of a RAG system?'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'What are the key components of a RAG system?'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'What are the key components of a RAG system?'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "rag_components_001",
+          "text": "RAG (Retrieval-Augmented Generation) systems combine information retrieval with text generation to produce more accurate and contextually relevant responses.",
+          "score": 1.0,
+          "source": "rag_textbook_ch3"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.009298324584960938,
+        "timestamp": "2025-12-23T10:49:52.123674"
+      },
+      "timestamp": "2025-12-23T10:49:52.123751"
+    },
+    {
+      "test_id": "embedding_gen_001",
+      "query_text": "Describe the process of embedding generation",
+      "category": "Embeddings",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'Describe the process of embedding generation'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'Describe the process of embedding generation'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'Describe the process of embedding generation'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "embedding_001",
+          "text": "Embedding generation is the process of converting text, images, or other data types into numerical vectors that represent their semantic meaning.",
+          "score": 1.0,
+          "source": "embedding_textbook_ch4"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.00858306884765625,
+        "timestamp": "2025-12-23T10:49:52.123771"
+      },
+      "timestamp": "2025-12-23T10:49:52.123851"
+    },
+    {
+      "test_id": "neural_nets_001",
+      "query_text": "How do neural networks learn from data?",
+      "category": "Neural Networks",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'How do neural networks learn from data?'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'How do neural networks learn from data?'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'How do neural networks learn from data?'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "nn_learning_001",
+          "text": "Neural networks learn from data through a process called backpropagation, where the network adjusts its weights based on the error of its predictions.",
+          "score": 1.0,
+          "source": "nn_textbook_ch6"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.008106231689453125,
+        "timestamp": "2025-12-23T10:49:52.123870"
+      },
+      "timestamp": "2025-12-23T10:49:52.123954"
+    },
+    {
+      "test_id": "nlp_apps_001",
+      "query_text": "What are the applications of natural language processing?",
+      "category": "NLP",
+      "status": "failed",
+      "retrieved_chunks": [
+        {
+          "id": "mock_id_0",
+          "content": "Mock content for query: 'What are the applications of natural language processing?'. This is a simulated result for testing purposes.",
+          "score": 0.8,
+          "metadata": {
+            "source": "mock_source_0",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_1",
+          "content": "Mock content for query: 'What are the applications of natural language processing?'. This is a simulated result for testing purposes.",
+          "score": 0.7,
+          "metadata": {
+            "source": "mock_source_1",
+            "type": "mock"
+          }
+        },
+        {
+          "id": "mock_id_2",
+          "content": "Mock content for query: 'What are the applications of natural language processing?'. This is a simulated result for testing purposes.",
+          "score": 0.6,
+          "metadata": {
+            "source": "mock_source_2",
+            "type": "mock"
+          }
+        }
+      ],
+      "expected_chunks": [
+        {
+          "id": "nlp_apps_001",
+          "text": "Natural Language Processing (NLP) has applications in machine translation, sentiment analysis, chatbots, and text summarization.",
+          "score": 1.0,
+          "source": "nlp_textbook_ch7"
+        }
+      ],
+      "accuracy_metrics": {
+        "total_retrieved": 3,
+        "total_expected": 1,
+        "true_positives": 0,
+        "false_positives": 3,
+        "false_negatives": 1,
+        "avg_score": 0.7,
+        "max_score": 0.8,
+        "min_score": 0.6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0
+      },
+      "latency_data": {
+        "latency_ms": 0.008821487426757812,
+        "timestamp": "2025-12-23T10:49:52.123978"
+      },
+      "timestamp": "2025-12-23T10:49:52.124072"
+    }
+  ],
+  "generated_at": "2025-12-23T10:49:52.124248",
+  "total_tests_run": 7,
+  "additional_metrics": {
+    "query_latency_history_size": 19,
+    "accuracy_metrics_history_size": 18,
+    "aggregated_data": {
+      "timestamp": "2025-12-23T10:49:52.124341",
+      "latency_metrics": {
+        "count": 19,
+        "avg_latency_ms": 0.011983670686420641,
+        "median_latency_ms": 0.008821487426757812,
+        "min_latency_ms": 0.005245208740234375,
+        "max_latency_ms": 0.04076957702636719,
+        "p95_latency_ms": 0.030255317687988257,
+        "p99_latency_ms": 0.03866672515869141
+      },
+      "accuracy_metrics": {
+        "count": 18,
+        "avg_precision": 0.0,
+        "avg_recall": 0.0,
+        "avg_f1_score": 0,
+        "min_precision": 0.0,
+        "max_precision": 0.0,
+        "min_recall": 0.0,
+        "max_recall": 0.0,
+        "min_f1_score": 0,
+        "max_f1_score": 0
+      },
+      "total_queries_measured": 19,
+      "total_accuracy_measurements": 18
+    },
+    "last_updated": "2025-12-23T10:49:52.124347"
+  },
+  "execution_time_seconds": 0.0010714530944824219
+}
