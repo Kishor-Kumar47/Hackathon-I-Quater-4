@@ -1,0 +1,484 @@
+# OpenAPI 3.0 specification
+openapi: 3.0.0
+info:
+  title: Retrieval Validation Service
+  version: 1.0.0
+  description: Service for validating RAG retrieval functionality
+
+paths:
+  /query:
+    post:
+      summary: Query the vector database for relevant content
+      description: Execute a semantic search query against the vector database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: Search query text
+                  example: "How to implement RAG chatbot?"
+                top_k:
+                  type: integer
+                  default: 5
+                  minimum: 1
+                  maximum: 100
+                  description: Number of results to return
+                similarity_threshold:
+                  type: number
+                  format: float
+                  default: 0.5
+                  minimum: 0.0
+                  maximum: 1.0
+                  description: Minimum similarity threshold
+                include_metadata:
+                  type: boolean
+                  default: true
+                  description: Whether to include metadata in results
+      responses:
+        '200':
+          description: Query results returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                          description: Retrieved content chunk
+                        score:
+                          type: number
+                          format: float
+                          description: Similarity score
+                        source_url:
+                          type: string
+                          description: Source URL of the content
+                        metadata:
+                          type: object
+                          description: Additional metadata
+                          properties:
+                            title:
+                              type: string
+                              description: Title of the source document
+                            headings:
+                              type: array
+                              items:
+                                type: string
+                              description: Headings hierarchy in the document
+                            created_at:
+                              type: string
+                              format: date-time
+                              description: When the content was indexed
+                    description: Array of retrieved content chunks
+                  query_embedding:
+                    type: array
+                    items:
+                      type: number
+                      format: float
+                    description: The embedding vector of the query
+                  latency_ms:
+                    type: number
+                    format: float
+                    description: Query execution time in milliseconds
+                  total_results:
+                    type: integer
+                    description: Total number of results found
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid query parameters"
+                  details:
+                    type: object
+                    description: Additional error details
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error"
+                  details:
+                    type: object
+                    description: Additional error details
+
+  /validate:
+    post:
+      summary: Validate retrieval accuracy with test queries
+      description: Execute validation tests with known queries and expected results
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - test_queries
+              properties:
+                test_queries:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                      - query
+                      - expected_topics
+                    properties:
+                      query:
+                        type: string
+                        description: Test query text
+                        example: "What is vector retrieval?"
+                      expected_topics:
+                        type: array
+                        items:
+                          type: string
+                        description: Expected topics or content
+                        example: ["semantic search", "vector similarity", "RAG"]
+                      top_k:
+                        type: integer
+                        default: 5
+                        minimum: 1
+                        maximum: 100
+                        description: Number of results to validate
+                      similarity_threshold:
+                        type: number
+                        format: float
+                        default: 0.5
+                        minimum: 0.0
+                        maximum: 1.0
+                        description: Minimum similarity threshold
+                config:
+                  type: object
+                  properties:
+                    accuracy_threshold:
+                      type: number
+                      format: float
+                      default: 0.8
+                      minimum: 0.0
+                      maximum: 1.0
+                      description: Minimum accuracy score to pass validation
+      responses:
+        '200':
+          description: Validation results returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validation_results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        test_id:
+                          type: string
+                          description: Unique identifier for the test
+                        query:
+                          type: string
+                          description: The query that was tested
+                        status:
+                          type: string
+                          enum: [pass, fail, error]
+                          description: Validation status
+                        accuracy_score:
+                          type: number
+                          format: float
+                          description: Calculated accuracy score
+                        expected_results:
+                          type: array
+                          items:
+                            type: string
+                          description: Expected topics or content
+                        actual_results:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              text:
+                                type: string
+                                description: Retrieved content chunk
+                              score:
+                                type: number
+                                format: float
+                                description: Similarity score
+                              source_url:
+                                type: string
+                                description: Source URL
+                        latency_ms:
+                          type: number
+                          format: float
+                        error_message:
+                          type: string
+                          description: Error details if status is error
+                  overall_metrics:
+                    type: object
+                    properties:
+                      precision:
+                        type: number
+                        format: float
+                        description: Overall precision score
+                      recall:
+                        type: number
+                        format: float
+                        description: Overall recall score
+                      relevance_score:
+                        type: number
+                        format: float
+                        description: Overall relevance score
+                      total_tests:
+                        type: integer
+                        description: Total number of tests executed
+                      passed_tests:
+                        type: integer
+                        description: Number of tests that passed
+                      accuracy_rate:
+                        type: number
+                        format: float
+                        description: Percentage of tests that passed
+                  summary:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum: [pass, fail]
+                        description: Overall validation status
+                      message:
+                        type: string
+                        description: Summary message
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid test query parameters"
+                  details:
+                    type: object
+                    description: Additional error details
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error during validation"
+                  details:
+                    type: object
+                    description: Additional error details
+
+  /metrics:
+    get:
+      summary: Get retrieval performance metrics
+      description: Retrieve performance metrics for the validation system
+      parameters:
+        - name: start_time
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            description: Start time for metrics aggregation
+        - name: end_time
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            description: End time for metrics aggregation
+        - name: session_id
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Specific session to get metrics for
+      responses:
+        '200':
+          description: Metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  overall_metrics:
+                    type: object
+                    properties:
+                      total_queries:
+                        type: integer
+                        description: Total number of queries processed
+                      average_latency_ms:
+                        type: number
+                        format: float
+                        description: Average query latency in milliseconds
+                      success_rate:
+                        type: number
+                        format: float
+                        description: Percentage of successful queries
+                      accuracy_rate:
+                        type: number
+                        format: float
+                        description: Overall accuracy rate
+                  accuracy_metrics:
+                    type: object
+                    properties:
+                      precision:
+                        type: number
+                        format: float
+                        description: Precision score
+                      recall:
+                        type: number
+                        format: float
+                        description: Recall score
+                      f1_score:
+                        type: number
+                        format: float
+                        description: F1 score
+                  performance_metrics:
+                    type: object
+                    properties:
+                      p95_latency_ms:
+                        type: number
+                        format: float
+                        description: 95th percentile query latency
+                      p99_latency_ms:
+                        type: number
+                        format: float
+                        description: 99th percentile query latency
+                      queries_per_second:
+                        type: number
+                        format: float
+                        description: Queries per second throughput
+                  time_series:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                        queries_per_minute:
+                          type: integer
+                        average_latency_ms:
+                          type: number
+                          format: float
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error"
+                  details:
+                    type: object
+                    description: Additional error details
+
+  /sessions:
+    get:
+      summary: List retrieval sessions
+      description: Get a list of retrieval validation sessions
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, completed, failed]
+            description: Filter by session status
+        - name: session_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [validation, testing, benchmarking]
+            description: Filter by session type
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+            description: Maximum number of sessions to return
+      responses:
+        '200':
+          description: Sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        session_id:
+                          type: string
+                          description: Unique session identifier
+                        start_time:
+                          type: string
+                          format: date-time
+                          description: Session start time
+                        end_time:
+                          type: string
+                          format: date-time
+                          description: Session end time
+                        total_queries:
+                          type: integer
+                          description: Total queries in session
+                        successful_queries:
+                          type: integer
+                          description: Successful queries in session
+                        average_latency:
+                          type: number
+                          format: float
+                          description: Average query latency
+                        status:
+                          type: string
+                          enum: [active, completed, failed]
+                        session_type:
+                          type: string
+                          enum: [validation, testing, benchmarking]
+                  total_sessions:
+                    type: integer
+                    description: Total number of sessions matching criteria
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error"
+                  details:
+                    type: object
+                    description: Additional error details

@@ -1,0 +1,176 @@
+# OpenAPI 3.0 specification
+openapi: 3.0.0
+info:
+  title: Cohere Embedding Service
+  version: 1.0.0
+  description: Service for generating embeddings using Cohere API
+
+paths:
+  /embed:
+    post:
+      summary: Generate embeddings for text chunks
+      description: Takes text chunks and generates vector embeddings using Cohere API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - texts
+              properties:
+                texts:
+                  type: array
+                  items:
+                    type: string
+                  description: Text chunks to generate embeddings for
+                  example: ["This is the first chunk", "This is the second chunk"]
+                model:
+                  type: string
+                  default: "embed-multilingual-v2.0"
+                  description: The model to use for embedding generation
+                  example: "embed-multilingual-v2.0"
+                truncate:
+                  type: string
+                  enum: [START, END, NONE]
+                  default: END
+                  description: How to handle texts longer than maximum length
+      responses:
+        '200':
+          description: Embeddings generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - embeddings
+                properties:
+                  embeddings:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: number
+                        format: float
+                    description: Array of embedding vectors
+                  meta:
+                    type: object
+                    properties:
+                      billed_units:
+                        type: object
+                        properties:
+                          input_tokens:
+                            type: integer
+                          output_tokens:
+                            type: integer
+        '400':
+          description: Bad request - invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /embed/batch:
+    post:
+      summary: Generate embeddings for text chunks in batches
+      description: Takes multiple text chunks and generates embeddings efficiently
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - texts
+              properties:
+                texts:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of text chunks to generate embeddings for
+                  maxItems: 96  # Cohere's maximum batch size
+                model:
+                  type: string
+                  default: "embed-multilingual-v2.0"
+                  description: The model to use for embedding generation
+                truncate:
+                  type: string
+                  enum: [START, END, NONE]
+                  default: END
+                  description: How to handle texts longer than maximum length
+      responses:
+        '200':
+          description: Embeddings generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - embeddings
+                properties:
+                  embeddings:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: number
+                        format: float
+                    description: Array of embedding vectors
+                  meta:
+                    type: object
+                    properties:
+                      billed_units:
+                        type: object
+                        properties:
+                          input_tokens:
+                            type: integer
+                          output_tokens:
+                            type: integer
+        '400':
+          description: Bad request - invalid input or batch too large
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

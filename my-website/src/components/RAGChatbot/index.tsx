@@ -69,7 +69,7 @@ const RAGChatbot: React.FC = () => {
         payload.context = context;
       }
 
-      const response = await axios.post('http://localhost:8000/api/chat', payload);
+      const response = await axios.post('http://localhost:8003/api/chat', payload);
       const agentResponse: string = response.data.answer;
       const mode: 'Full Book Search' | 'Context from Selection' = context ? 'Context from Selection' : 'Full Book Search';
 
